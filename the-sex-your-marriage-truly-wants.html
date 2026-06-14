@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sex Your Marriage Truly Wants</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush:    #C8A08A;
+    --rose:     #8B3A52;
+    --ivory:    #FAF6F1;
+    --charcoal: #2B2320;
+    --mist:     #EDE4DC;
+    --gold:     #B8945A;
+    --white:    #FFFFFF;
+    --shadow:   rgba(43,35,32,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ivory);
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--mist);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--rose);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--rose); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: linear-gradient(160deg, var(--ivory) 55%, var(--mist) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -120px; right: -80px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,160,138,.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--charcoal);
+    max-width: 750px;
+    margin-bottom: 1.8rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rose);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    max-width: 520px;
+    color: var(--charcoal);
+    opacity: 0.65;
+    margin-bottom: 2.8rem;
+  }
+  .btn-primary {
+    background: var(--rose);
+    color: var(--white);
+    border: none;
+    padding: 0.85rem 2.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background .25s, transform .15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #6e2e41; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--rose);
+    border: 1px solid var(--rose);
+    padding: 0.85rem 2.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all .25s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-ghost:hover { background: var(--rose); color: var(--white); }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem 5vw; }
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    font-size: 0.92rem;
+    opacity: 0.62;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+  }
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--mist);
+    margin: 0 5vw;
+  }
+
+  /* ─── MEDIA GALLERY ─── */
+  #gallery { background: var(--white); }
+  .upload-zone {
+    border: 2px dashed var(--blush);
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    margin-bottom: 2rem;
+    background: var(--ivory);
+  }
+  .upload-zone:hover { border-color: var(--rose); background: #fdf9f7; }
+  .upload-zone.drag-over { border-color: var(--rose); background: #fdf5f2; }
+  .upload-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .upload-zone p { font-size: 0.85rem; opacity: 0.6; }
+  .upload-zone strong { color: var(--rose); font-weight: 500; }
+  #file-input { display: none; }
+
+  .media-tabs { display: flex; gap: 0; margin-bottom: 2rem; border-bottom: 1px solid var(--mist); }
+  .media-tab {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--charcoal);
+    opacity: 0.5;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all .2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .media-tab.active { opacity: 1; color: var(--rose); border-bottom-color: var(--rose); }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    min-height: 120px;
+  }
+  .media-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--mist);
+    aspect-ratio: 1;
+    cursor: pointer;
+    group: true;
+  }
+  .media-card img, .media-card video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s;
+  }
+  .media-card:hover img, .media-card:hover video { transform: scale(1.04); }
+  .media-card .delete-btn {
+    position: absolute; top: 6px; right: 6px;
+    background: rgba(139,58,82,.85);
+    color: white; border: none;
+    border-radius: 50%; width: 26px; height: 26px;
+    font-size: 0.75rem; cursor: pointer;
+    opacity: 0; transition: opacity .2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .media-card:hover .delete-btn { opacity: 1; }
+  .media-card .video-badge {
+    position: absolute; bottom: 6px; left: 6px;
+    background: rgba(43,35,32,.7);
+    color: white; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 2px;
+  }
+  .empty-gallery {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 3rem;
+    opacity: 0.4;
+    font-size: 0.88rem;
+  }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(43,35,32,.92);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
+  .lightbox-inner img, .lightbox-inner video {
+    max-width: 90vw; max-height: 88vh;
+    border-radius: 4px; object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute; top: -36px; right: 0;
+    background: none; border: none; color: white;
+    font-size: 1.8rem; cursor: pointer; line-height: 1;
+  }
+
+  /* ─── ARTICLES ─── */
+  #articles { background: var(--ivory); }
+  .article-form {
+    background: var(--white);
+    border: 1px solid var(--mist);
+    border-radius: 6px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .article-form h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400;
+    margin-bottom: 1.2rem; color: var(--rose);
+  }
+  .form-row { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-field label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
+  .form-field input, .form-field textarea, .form-field select {
+    border: 1px solid var(--mist);
+    border-radius: 3px;
+    padding: 0.65rem 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    background: var(--ivory);
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color .2s;
+    width: 100%;
+  }
+  .form-field input:focus, .form-field textarea:focus { border-color: var(--rose); }
+  .form-field textarea { min-height: 140px; resize: vertical; }
+
+  .articles-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .article-card {
+    background: var(--white);
+    border: 1px solid var(--mist);
+    border-radius: 6px;
+    padding: 1.6rem;
+    position: relative;
+    transition: box-shadow .2s;
+  }
+  .article-card:hover { box-shadow: 0 4px 20px var(--shadow); }
+  .article-meta {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .article-tag {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--white); background: var(--rose);
+    padding: 2px 8px; border-radius: 2px;
+  }
+  .article-date { font-size: 0.75rem; opacity: 0.45; }
+  .article-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 400;
+    margin-bottom: 0.5rem; color: var(--charcoal);
+  }
+  .article-card p { font-size: 0.87rem; opacity: 0.65; line-height: 1.65; }
+  .article-actions {
+    display: flex; gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .btn-sm {
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.35rem 0.9rem; border-radius: 2px; cursor: pointer;
+    font-family: 'Inter', sans-serif; border: 1px solid; transition: all .2s;
+  }
+  .btn-sm.edit { color: var(--rose); border-color: var(--rose); background: transparent; }
+  .btn-sm.edit:hover { background: var(--rose); color: white; }
+  .btn-sm.delete { color: #999; border-color: #ddd; background: transparent; }
+  .btn-sm.delete:hover { background: #f5e8e8; color: var(--rose); border-color: var(--rose); }
+
+  /* ─── SHOP ─── */
+  #shop { background: var(--mist); }
+  .product-form {
+    background: var(--white);
+    border: 1px solid rgba(200,160,138,.3);
+    border-radius: 6px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .product-form h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400;
+    margin-bottom: 1.2rem; color: var(--rose);
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: var(--white);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow .25s, transform .2s;
+    border: 1px solid rgba(200,160,138,.25);
+  }
+  .product-card:hover { box-shadow: 0 8px 32px var(--shadow); transform: translateY(-2px); }
+  .product-img {
+    background: linear-gradient(135deg, var(--mist) 0%, #e8ddd5 100%);
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .product-body { padding: 1.4rem; }
+  .product-body h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+  .product-body .desc { font-size: 0.82rem; opacity: 0.58; margin-bottom: 1rem; }
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.4rem 1.2rem;
+  }
+  .price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: var(--rose);
+  }
+  .product-actions { display: flex; gap: 0.4rem; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem 5vw;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+  }
+  footer span { color: var(--blush); }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--charcoal); color: white;
+    padding: 0.75rem 1.6rem; border-radius: 4px;
+    font-size: 0.82rem; z-index: 9999;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(43,35,32,.6);
+    align-items: center; justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--white); border-radius: 8px;
+    padding: 2rem; width: 100%; max-width: 560px;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400;
+    color: var(--rose); margin-bottom: 1.2rem;
+  }
+  .modal-footer { display: flex; gap: 0.75rem; margin-top: 1.2rem; justify-content: flex-end; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.7rem; }
+    section { padding: 4rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">The Sex Your Marriage Truly Wants</div>
+  <ul class="nav-links">
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#shop">Shop</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">A sanctuary for married couples</div>
+  <h1>The Sex Your<br><em>Marriage Truly</em><br>Wants</h1>
+  <p class="hero-sub">Healing, intimacy, and rediscovery for couples ready to go deeper — with honesty, grace, and intention.</p>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+    <a href="#articles" class="btn-primary">Read the Guide</a>
+    <a href="#shop" class="btn-ghost">Browse Resources</a>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-label">Visual Space</div>
+  <h2 class="section-title">Your Gallery</h2>
+  <p class="section-desc">Upload images and videos — as many as you like. Click any item to enlarge it.</p>
+
+  <div class="media-tabs">
+    <button class="media-tab active" onclick="filterMedia('all', this)">All</button>
+    <button class="media-tab" onclick="filterMedia('image', this)">Images</button>
+    <button class="media-tab" onclick="filterMedia('video', this)">Videos</button>
+  </div>
+
+  <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
+    <div class="upload-icon">🌸</div>
+    <p><strong>Click to upload</strong> or drag & drop here</p>
+    <p style="margin-top:.3rem">Images (JPG, PNG, GIF, WebP) &amp; Videos (MP4, MOV, WebM) — no size limit</p>
+  </div>
+  <input type="file" id="file-input" multiple accept="image/*,video/*">
+
+  <div class="media-grid" id="media-grid">
+    <div class="empty-gallery" id="empty-gallery">No media yet — upload something beautiful.</div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner" id="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox(null, true)">×</button>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ARTICLES -->
+<section id="articles">
+  <div class="section-label">Written Space</div>
+  <h2 class="section-title">Articles & Guides</h2>
+  <p class="section-desc">Write, save, and publish articles. Add a title, category, and your content — then update anytime.</p>
+
+  <div class="article-form">
+    <h3 id="article-form-title">New Article</h3>
+    <div class="form-row">
+      <div class="form-field">
+        <label>Title</label>
+        <input type="text" id="art-title" placeholder="e.g. Rebuilding Intimacy After Distance">
+      </div>
+    </div>
+    <div class="form-row" style="flex-direction:row;gap:1rem;">
+      <div class="form-field" style="flex:1">
+        <label>Category</label>
+        <select id="art-cat">
+          <option value="Intimacy">Intimacy</option>
+          <option value="Communication">Communication</option>
+          <option value="Healing">Healing</option>
+          <option value="Desire">Desire</option>
+          <option value="Spirituality">Spirituality</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-field" style="flex:1">
+        <label>Author</label>
+        <input type="text" id="art-author" placeholder="Your name or pen name">
+      </div>
+    </div>
+    <div class="form-field" style="margin-bottom:1rem">
+      <label>Content</label>
+      <textarea id="art-body" placeholder="Write your article here..."></textarea>
+    </div>
+    <div style="display:flex;gap:0.75rem;align-items:center;">
+      <button class="btn-primary" onclick="saveArticle()">Save Article</button>
+      <button class="btn-ghost" onclick="clearArticleForm()" style="padding:.7rem 1.4rem">Clear</button>
+      <span id="article-edit-id" style="display:none"></span>
+    </div>
+  </div>
+
+  <div class="articles-list" id="articles-list">
+    <p style="opacity:.4;font-size:.88rem">No articles yet — write your first one above.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="section-label">Resource Space</div>
+  <h2 class="section-title">Shop & Sales</h2>
+  <p class="section-desc">List books, guides, courses, or sessions. Add a title, price, description, and a link to your external store (Payhip, Gumroad, etc).</p>
+
+  <div class="product-form">
+    <h3 id="product-form-title">Add a Product</h3>
+    <div class="form-row" style="flex-direction:row;gap:1rem;flex-wrap:wrap;">
+      <div class="form-field" style="flex:2;min-width:200px">
+        <label>Product Title</label>
+        <input type="text" id="prod-title" placeholder="e.g. The Sex Your Marriage Wants — VR Edition">
+      </div>
+      <div class="form-field" style="flex:1;min-width:100px">
+        <label>Price ($)</label>
+        <input type="number" id="prod-price" placeholder="9.99" min="0" step="0.01">
+      </div>
+    </div>
+    <div class="form-field" style="margin-bottom:1rem">
+      <label>Short Description</label>
+      <textarea id="prod-desc" style="min-height:80px" placeholder="What will this help couples with?"></textarea>
+    </div>
+    <div class="form-row" style="flex-direction:row;gap:1rem;flex-wrap:wrap;">
+      <div class="form-field" style="flex:2;min-width:200px">
+        <label>Buy Link (Payhip / Gumroad / Draft2Digital)</label>
+        <input type="url" id="prod-link" placeholder="https://payhip.com/your-product">
+      </div>
+      <div class="form-field" style="flex:1;min-width:120px">
+        <label>Type</label>
+        <select id="prod-type">
+          <option value="📖 Book">📖 Book</option>
+          <option value="🎥 Course">🎥 Course</option>
+          <option value="📄 Guide">📄 Guide</option>
+          <option value="🎧 Audio">🎧 Audio</option>
+          <option value="💬 Session">💬 Session</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:.75rem;margin-top:1rem;">
+      <button class="btn-primary" onclick="saveProduct()">Add Product</button>
+      <button class="btn-ghost" onclick="clearProductForm()" style="padding:.7rem 1.4rem">Clear</button>
+      <span id="product-edit-id" style="display:none"></span>
+    </div>
+  </div>
+
+  <div class="products-grid" id="products-grid">
+    <p style="opacity:.4;font-size:.88rem;grid-column:1/-1" id="empty-products">No products yet — add your first one above.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>The Sex Your Marriage Truly Wants</span> · A healing space for married couples · All rights reserved.</p>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- EDIT ARTICLE MODAL -->
+<div class="modal-overlay" id="article-modal">
+  <div class="modal-box">
+    <h3>Edit Article</h3>
+    <div class="form-field" style="margin-bottom:.9rem">
+      <label>Title</label>
+      <input type="text" id="modal-art-title">
+    </div>
+    <div style="display:flex;gap:1rem;margin-bottom:.9rem;flex-wrap:wrap;">
+      <div class="form-field" style="flex:1">
+        <label>Category</label>
+        <select id="modal-art-cat">
+          <option>Intimacy</option><option>Communication</option><option>Healing</option>
+          <option>Desire</option><option>Spirituality</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-field" style="flex:1">
+        <label>Author</label>
+        <input type="text" id="modal-art-author">
+      </div>
+    </div>
+    <div class="form-field">
+      <label>Content</label>
+      <textarea id="modal-art-body" style="min-height:160px"></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="closeModal('article-modal')" style="padding:.6rem 1.2rem">Cancel</button>
+      <button class="btn-primary" onclick="saveEditedArticle()">Save Changes</button>
+    </div>
+    <input type="hidden" id="modal-art-id">
+  </div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────
+let mediaItems = JSON.parse(localStorage.getItem('tsymtw_media') || '[]');
+let articles   = JSON.parse(localStorage.getItem('tsymtw_articles') || '[]');
+let products   = JSON.parse(localStorage.getItem('tsymtw_products') || '[]');
+let currentFilter = 'all';
+
+// ─── TOAST ───────────────────────────────────────────────
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// ─── MEDIA ───────────────────────────────────────────────
+document.getElementById('file-input').addEventListener('change', e => {
+  [...e.target.files].forEach(readFile);
+  e.target.value = '';
+});
+
+const zone = document.getElementById('upload-zone');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+zone.addEventListener('drop', e => {
+  e.preventDefault(); zone.classList.remove('drag-over');
+  [...e.dataTransfer.files].forEach(readFile);
+});
+
+function readFile(file) {
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const item = { id: Date.now() + Math.random(), src: ev.target.result, type: file.type.startsWith('video') ? 'video' : 'image', name: file.name };
+    mediaItems.unshift(item);
+    localStorage.setItem('tsymtw_media', JSON.stringify(mediaItems));
+    renderMedia();
+    toast('Uploaded: ' + file.name);
+  };
+  reader.readAsDataURL(file);
+}
+
+function filterMedia(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.media-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMedia();
+}
+
+function renderMedia() {
+  const grid = document.getElementById('media-grid');
+  const filtered = currentFilter === 'all' ? mediaItems : mediaItems.filter(m => m.type === currentFilter);
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty-gallery" id="empty-gallery">No media yet — upload something beautiful.</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(item => `
+    <div class="media-card" data-id="${item.id}">
+      ${item.type === 'video'
+        ? `<video src="${item.src}" muted playsinline></video><span class="video-badge">Video</span>`
+        : `<img src="${item.src}" alt="${item.name}">`}
+      <button class="delete-btn" onclick="deleteMedia('${item.id}',event)" title="Remove">✕</button>
+    </div>
+  `).join('');
+  grid.querySelectorAll('.media-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.id;
+      const item = mediaItems.find(m => String(m.id) === String(id));
+      if (item) openLightbox(item);
+    });
+  });
+}
+
+function deleteMedia(id, e) {
+  e.stopPropagation();
+  mediaItems = mediaItems.filter(m => String(m.id) !== String(id));
+  localStorage.setItem('tsymtw_media', JSON.stringify(mediaItems));
+  renderMedia();
+  toast('Removed.');
+}
+
+function openLightbox(item) {
+  const inner = document.getElementById('lightbox-inner');
+  inner.innerHTML = `<button class="lightbox-close" onclick="closeLightbox(null,true)">×</button>
+    ${item.type === 'video'
+      ? `<video src="${item.src}" controls autoplay style="max-width:90vw;max-height:88vh;border-radius:4px"></video>`
+      : `<img src="${item.src}" alt="">`}`;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e, force) {
+  if (force || e?.target === document.getElementById('lightbox')) {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+// ─── ARTICLES ────────────────────────────────────────────
+function saveArticle() {
+  const title  = document.getElementById('art-title').value.trim();
+  const body   = document.getElementById('art-body').value.trim();
+  const cat    = document.getElementById('art-cat').value;
+  const author = document.getElementById('art-author').value.trim();
+  const editId = document.getElementById('article-edit-id').textContent;
+  if (!title || !body) { toast('Please add a title and content.'); return; }
+
+  if (editId) {
+    const idx = articles.findIndex(a => a.id === editId);
+    if (idx > -1) articles[idx] = { ...articles[idx], title, body, cat, author };
+  } else {
+    articles.unshift({ id: Date.now().toString(), title, body, cat, author, date: new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' }) });
+  }
+  localStorage.setItem('tsymtw_articles', JSON.stringify(articles));
+  clearArticleForm();
+  renderArticles();
+  toast(editId ? 'Article updated.' : 'Article saved.');
+}
+
+function clearArticleForm() {
+  document.getElementById('art-title').value = '';
+  document.getElementById('art-body').value = '';
+  document.getElementById('art-author').value = '';
+  document.getElementById('art-cat').value = 'Intimacy';
+  document.getElementById('article-edit-id').textContent = '';
+  document.getElementById('article-form-title').textContent = 'New Article';
+}
+
+function renderArticles() {
+  const list = document.getElementById('articles-list');
+  if (!articles.length) { list.innerHTML = '<p style="opacity:.4;font-size:.88rem">No articles yet — write your first one above.</p>'; return; }
+  list.innerHTML = articles.map(a => `
+    <div class="article-card">
+      <div class="article-meta">
+        <span class="article-tag">${a.cat}</span>
+        <span class="article-date">${a.date}${a.author ? ' · ' + a.author : ''}</span>
+      </div>
+      <h4>${a.title}</h4>
+      <p>${a.body.length > 220 ? a.body.slice(0,220) + '…' : a.body}</p>
+      <div class="article-actions">
+        <button class="btn-sm edit" onclick="editArticle('${a.id}')">Edit</button>
+        <button class="btn-sm delete" onclick="deleteArticle('${a.id}')">Delete</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function editArticle(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('art-title').value  = a.title;
+  document.getElementById('art-body').value   = a.body;
+  document.getElementById('art-author').value = a.author || '';
+  document.getElementById('art-cat').value    = a.cat;
+  document.getElementById('article-edit-id').textContent = a.id;
+  document.getElementById('article-form-title').textContent = 'Edit Article';
+  document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
+}
+
+function deleteArticle(id) {
+  if (!confirm('Delete this article?')) return;
+  articles = articles.filter(a => a.id !== id);
+  localStorage.setItem('tsymtw_articles', JSON.stringify(articles));
+  renderArticles();
+  toast('Article deleted.');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function saveEditedArticle() {}
+
+// ─── PRODUCTS ────────────────────────────────────────────
+function saveProduct() {
+  const title   = document.getElementById('prod-title').value.trim();
+  const desc    = document.getElementById('prod-desc').value.trim();
+  const price   = parseFloat(document.getElementById('prod-price').value) || 0;
+  const link    = document.getElementById('prod-link').value.trim();
+  const type    = document.getElementById('prod-type').value;
+  const editId  = document.getElementById('product-edit-id').textContent;
+  if (!title) { toast('Please add a product title.'); return; }
+
+  if (editId) {
+    const idx = products.findIndex(p => p.id === editId);
+    if (idx > -1) products[idx] = { ...products[idx], title, desc, price, link, type };
+  } else {
+    products.unshift({ id: Date.now().toString(), title, desc, price, link, type });
+  }
+  localStorage.setItem('tsymtw_products', JSON.stringify(products));
+  clearProductForm();
+  renderProducts();
+  toast(editId ? 'Product updated.' : 'Product added.');
+}
+
+function clearProductForm() {
+  ['prod-title','prod-desc','prod-link'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('prod-price').value = '';
+  document.getElementById('prod-type').value = '📖 Book';
+  document.getElementById('product-edit-id').textContent = '';
+  document.getElementById('product-form-title').textContent = 'Add a Product';
+}
+
+function renderProducts() {
+  const grid = document.getElementById('products-grid');
+  if (!products.length) {
+    grid.innerHTML = '<p style="opacity:.4;font-size:.88rem;grid-column:1/-1" id="empty-products">No products yet — add your first one above.</p>';
+    return;
+  }
+  grid.innerHTML = products.map(p => `
+    <div class="product-card">
+      <div class="product-img">${p.type.split(' ')[0]}</div>
+      <div class="product-body">
+        <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem">${p.type.split(' ').slice(1).join(' ')}</div>
+        <h4>${p.title}</h4>
+        <p class="desc">${p.desc || 'No description yet.'}</p>
+      </div>
+      <div class="product-footer">
+        <span class="price">$${parseFloat(p.price).toFixed(2)}</span>
+        <div class="product-actions">
+          <button class="btn-sm edit" onclick="editProduct('${p.id}')">Edit</button>
+          <button class="btn-sm delete" onclick="deleteProduct('${p.id}')">Remove</button>
+          ${p.link ? `<a href="${p.link}" target="_blank" class="btn-sm edit" style="text-decoration:none">Buy →</a>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function editProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('prod-title').value = p.title;
+  document.getElementById('prod-desc').value  = p.desc || '';
+  document.getElementById('prod-price').value = p.price;
+  document.getElementById('prod-link').value  = p.link || '';
+  document.getElementById('prod-type').value  = p.type;
+  document.getElementById('product-edit-id').textContent = p.id;
+  document.getElementById('product-form-title').textContent = 'Edit Product';
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+function deleteProduct(id) {
+  if (!confirm('Remove this product?')) return;
+  products = products.filter(p => p.id !== id);
+  localStorage.setItem('tsymtw_products', JSON.stringify(products));
+  renderProducts();
+  toast('Product removed.');
+}
+
+// ─── INIT ────────────────────────────────────────────────
+renderMedia();
+renderArticles();
+renderProducts();
+</script>
+</body>
+</html>
