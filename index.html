@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Innovation Hub — Books · PINS · Chips</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1a1814;
+    --parchment: #f7f3ec;
+    --gold: #c8a84b;
+    --gold-dark: #9a7a2e;
+    --deep: #2c2416;
+    --muted: #7a6e5e;
+    --surface: #fff9f0;
+    --border: rgba(200,168,75,0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--parchment);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--deep);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--gold); letter-spacing: .04em;
+    text-decoration: none;
+  }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    color: rgba(255,255,255,.7); font-size: .85rem; text-decoration: none;
+    letter-spacing: .05em; text-transform: uppercase;
+    transition: color .2s;
+  }
+  nav ul a:hover { color: var(--gold); }
+
+  /* ── MULTILINGUAL TICKER BANNER ── */
+  .multilang-banner {
+    background: var(--gold);
+    overflow: hidden;
+    height: 40px;
+    display: flex; align-items: center;
+    border-bottom: 2px solid var(--gold-dark);
+  }
+  .ticker-track {
+    display: flex; align-items: center; gap: 0;
+    animation: ticker 60s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    font-size: .82rem; font-weight: 500;
+    color: var(--deep);
+    padding: 0 2rem;
+    border-right: 1px solid rgba(44,36,22,0.2);
+  }
+  .ticker-item:last-child { border-right: none; }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 5rem 2rem 4rem;
+    background: linear-gradient(180deg, #f0e8d4 0%, var(--parchment) 100%);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(200,168,75,0.08) 0%, transparent 60%),
+                      radial-gradient(circle at 80% 20%, rgba(200,168,75,0.06) 0%, transparent 50%);
+  }
+  .hero-eyebrow {
+    font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--gold-dark); margin-bottom: 1rem; font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.15; color: var(--deep);
+    margin-bottom: 1.25rem; position: relative;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-dark); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); max-width: 540px;
+    margin: 0 auto 2.5rem; line-height: 1.7;
+  }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--deep); color: var(--gold);
+    padding: .75rem 2rem; border-radius: 2px;
+    font-size: .9rem; text-decoration: none; font-weight: 500;
+    letter-spacing: .04em; transition: background .2s;
+  }
+  .btn-primary:hover { background: #3d3421; }
+  .btn-outline {
+    border: 1.5px solid var(--gold-dark); color: var(--deep);
+    padding: .75rem 2rem; border-radius: 2px;
+    font-size: .9rem; text-decoration: none; font-weight: 500;
+    letter-spacing: .04em; transition: border-color .2s;
+  }
+  .btn-outline:hover { border-color: var(--deep); }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    font-size: .72rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--gold-dark); font-weight: 500; margin-bottom: .75rem;
+  }
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--deep); margin-bottom: 1rem; line-height: 1.2;
+  }
+  .section-heading em { font-style: italic; }
+  .section-divider {
+    border: none; border-top: 1px solid var(--border);
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ── BOOK TRANSLATOR ── */
+  .translator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem; margin-top: 2.5rem;
+    align-items: start;
+  }
+  @media (max-width: 720px) { .translator-grid { grid-template-columns: 1fr; } }
+
+  .translator-intro p {
+    color: var(--muted); line-height: 1.75; margin-bottom: 1rem;
+  }
+  .stats-row { display: flex; gap: 2rem; margin-top: 1.5rem; }
+  .stat { text-align: center; }
+  .stat-n { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--deep); }
+  .stat-l { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: .2rem; }
+
+  .translator-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2rem;
+  }
+  .translator-card label {
+    display: block; font-size: .8rem; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: .5rem; margin-top: 1.25rem;
+  }
+  .translator-card label:first-child { margin-top: 0; }
+  .translator-card input,
+  .translator-card textarea {
+    width: 100%; border: 1px solid var(--border);
+    background: white; border-radius: 2px;
+    padding: .65rem .85rem; font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; color: var(--ink); resize: vertical;
+    transition: border-color .2s;
+  }
+  .translator-card input:focus,
+  .translator-card textarea:focus {
+    outline: none; border-color: var(--gold);
+  }
+
+  /* Language selector grid */
+  .lang-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: .5rem; margin-top: .5rem;
+    max-height: 220px; overflow-y: auto;
+    padding: .75rem; background: white;
+    border: 1px solid var(--border); border-radius: 2px;
+  }
+  .lang-chip {
+    display: flex; align-items: center; gap: .4rem;
+    padding: .4rem .6rem; border-radius: 2px;
+    border: 1px solid var(--border); background: var(--parchment);
+    cursor: pointer; font-size: .78rem; color: var(--ink);
+    transition: all .15s; user-select: none;
+  }
+  .lang-chip input[type=checkbox] { accent-color: var(--gold-dark); width: 13px; height: 13px; cursor: pointer; }
+  .lang-chip:hover { border-color: var(--gold); background: #fdf6e8; }
+  .lang-chip.selected { border-color: var(--gold-dark); background: #fdf0cc; font-weight: 500; }
+  .lang-chip .flag { font-size: 1rem; }
+
+  .lang-search {
+    width: 100%; border: 1px solid var(--border);
+    border-radius: 2px; padding: .55rem .85rem;
+    font-size: .85rem; margin-bottom: .5rem;
+    background: white; color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .lang-search:focus { outline: none; border-color: var(--gold); }
+
+  .selected-count {
+    font-size: .78rem; color: var(--gold-dark);
+    margin-top: .35rem; font-style: italic;
+  }
+
+  .translate-btn {
+    width: 100%; margin-top: 1.5rem;
+    background: var(--deep); color: var(--gold);
+    border: none; border-radius: 2px;
+    padding: .85rem; font-size: .95rem;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    cursor: pointer; letter-spacing: .04em;
+    transition: background .2s;
+  }
+  .translate-btn:hover { background: #3d3421; }
+  .translate-btn:disabled { opacity: .5; cursor: default; }
+
+  .translation-output {
+    margin-top: 1.5rem;
+    background: white; border: 1px solid var(--border);
+    border-radius: 2px; padding: 1.25rem;
+    font-size: .9rem; color: var(--ink); line-height: 1.7;
+    display: none;
+  }
+  .translation-output.visible { display: block; }
+  .output-lang-block { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+  .output-lang-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .output-lang-label {
+    font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold-dark); font-weight: 500; margin-bottom: .4rem;
+  }
+  .output-lang-text { color: var(--ink); line-height: 1.8; }
+  .thinking { color: var(--muted); font-style: italic; }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    display: flex; align-items: center; gap: .5rem;
+    margin-bottom: 1.25rem;
+    font-size: .78rem; color: var(--muted);
+  }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #4caf50; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  /* ── PIN PORTFOLIO ── */
+  .pin-filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filter-btn {
+    border: 1px solid var(--border); background: transparent;
+    padding: .45rem 1.1rem; border-radius: 2px;
+    font-size: .8rem; cursor: pointer; color: var(--muted);
+    font-family: 'DM Sans', sans-serif; letter-spacing: .04em;
+    transition: all .15s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--deep); color: var(--gold); border-color: var(--deep);
+  }
+  .pin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1.5rem; }
+  .pin-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1.5rem 1.25rem;
+    transition: border-color .2s;
+  }
+  .pin-card:hover { border-color: var(--gold); }
+  .pin-icon { font-size: 1.5rem; margin-bottom: .75rem; }
+  .pin-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--deep); margin-bottom: .4rem; }
+  .pin-tag {
+    display: inline-block; font-size: .68rem; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--gold-dark);
+    border: 1px solid var(--border); padding: .2rem .55rem;
+    border-radius: 2px;
+  }
+  .pin-desc { font-size: .85rem; color: var(--muted); margin-top: .6rem; line-height: 1.5; }
+
+  /* ── CHIP AI ── */
+  .chip-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2.5rem; }
+  @media (max-width: 720px) { .chip-layout { grid-template-columns: 1fr; } }
+
+  .chip-features { list-style: none; margin: 1.5rem 0; }
+  .chip-features li {
+    padding: .6rem 0; border-bottom: 1px solid var(--border);
+    font-size: .9rem; color: var(--muted); display: flex; gap: .6rem;
+  }
+  .chip-features li::before { content: '◆'; color: var(--gold); font-size: .7rem; margin-top: .2rem; flex-shrink: 0; }
+
+  .chip-card {
+    background: var(--deep); border-radius: 4px;
+    padding: 2rem; color: rgba(255,255,255,.9);
+  }
+  .chip-card label {
+    display: block; font-size: .75rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; margin-top: 1.25rem;
+  }
+  .chip-card label:first-child { margin-top: 0; }
+  .chip-card select, .chip-card textarea {
+    width: 100%; border: 1px solid rgba(200,168,75,.3);
+    background: rgba(255,255,255,.07); border-radius: 2px;
+    padding: .65rem .85rem; font-family: 'DM Sans', sans-serif;
+    font-size: .9rem; color: white; resize: vertical;
+    transition: border-color .2s;
+    -webkit-appearance: none;
+  }
+  .chip-card select option { background: var(--deep); }
+  .chip-card select:focus, .chip-card textarea:focus {
+    outline: none; border-color: var(--gold);
+  }
+  .chip-btn {
+    width: 100%; margin-top: 1.5rem;
+    background: var(--gold); color: var(--deep);
+    border: none; border-radius: 2px;
+    padding: .85rem; font-size: .95rem;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    cursor: pointer; transition: background .2s; letter-spacing: .04em;
+  }
+  .chip-btn:hover { background: #d4b05a; }
+  .chip-btn:disabled { opacity: .5; cursor: default; }
+  .chip-output {
+    margin-top: 1.5rem; padding: 1.25rem;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(200,168,75,.2);
+    border-radius: 2px; font-size: .85rem; line-height: 1.75;
+    color: rgba(255,255,255,.8); min-height: 80px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,.5);
+    text-align: center; padding: 2rem;
+    font-size: .8rem; letter-spacing: .04em;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  footer .footer-links { display: flex; gap: 2rem; justify-content: center; margin-bottom: 1rem; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(26,24,20,.6); z-index: 1000;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 4px; padding: 2rem;
+    max-width: 420px; width: 90%; position: relative;
+  }
+  .modal h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--deep); margin-bottom: .5rem; }
+  .modal p { font-size: .9rem; color: var(--muted); margin-bottom: 1.25rem; }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none; font-size: 1.2rem;
+    color: var(--muted); cursor: pointer;
+  }
+  .modal input { width: 100%; margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Innovation Hub</a>
+  <ul>
+    <li><a href="#translate">Book Translator</a></li>
+    <li><a href="#portfolio">PIN Portfolio</a></li>
+    <li><a href="#chip-ai">Chip AI</a></li>
+  </ul>
+</nav>
+
+<!-- MULTILINGUAL WELCOME TICKER -->
+<div class="multilang-banner" aria-label="Welcome message in many languages">
+  <div class="ticker-track" id="ticker">
+    <!-- filled by JS -->
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Books · Innovation · Silicon</p>
+  <h1>Ideas that <em>travel</em><br>across every frontier</h1>
+  <p class="hero-sub">Translate your books into 50+ languages. Showcase your PIN innovations. Design the next generation of chips with AI.</p>
+  <div class="hero-ctas">
+    <a href="#translate" class="btn-primary">Start Translating</a>
+    <a href="#portfolio" class="btn-outline">View Portfolio</a>
+  </div>
+</div>
+
+<hr class="section-divider" />
+
+<!-- BOOK TRANSLATOR -->
+<section id="translate">
+  <p class="section-tag">01 / Book Translator</p>
+  <h2 class="section-heading">Your words in every<br><em>language on Earth</em></h2>
+
+  <div class="translator-grid">
+    <div class="translator-intro">
+      <p>Reach readers across all continents. Our AI-powered translation engine handles literary nuance, cultural context, and stylistic tone — preserving your voice across 50+ languages.</p>
+      <p>From the first paragraph to the final chapter, your ideas belong to the world.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-n">50+</div><div class="stat-l">Languages</div></div>
+        <div class="stat"><div class="stat-n">98.2%</div><div class="stat-l">Accuracy</div></div>
+        <div class="stat"><div class="stat-n">8 sec</div><div class="stat-l">Avg Speed</div></div>
+      </div>
+    </div>
+
+    <div class="translator-card">
+      <div class="status-bar">
+        <div class="status-dot"></div>
+        Translation Engine Live
+      </div>
+
+      <label>Book Title (optional)</label>
+      <input type="text" id="book-title" placeholder="e.g. War and Peace" />
+
+      <label>Source Text</label>
+      <textarea id="source-text" rows="5" placeholder="Paste the passage you want translated…"></textarea>
+
+      <label>Choose Target Languages</label>
+      <input type="text" class="lang-search" id="lang-search" placeholder="🔍  Search languages…" />
+      <div class="lang-grid" id="lang-grid">
+        <!-- filled by JS -->
+      </div>
+      <div class="selected-count" id="selected-count">No languages selected</div>
+
+      <button class="translate-btn" id="translate-btn" onclick="runTranslation()">Translate Now</button>
+
+      <div class="translation-output" id="trans-output"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- PIN PORTFOLIO -->
+<section id="portfolio">
+  <p class="section-tag">02 / PIN Portfolio</p>
+  <h2 class="section-heading">Business Innovation<br><em>in every pin</em></h2>
+
+  <div class="pin-filters" id="pin-filters">
+    <button class="filter-btn active" onclick="filterPins('All', this)">All</button>
+    <button class="filter-btn" onclick="filterPins('Technology', this)">Technology</button>
+    <button class="filter-btn" onclick="filterPins('Sales', this)">Sales</button>
+    <button class="filter-btn" onclick="filterPins('Strategy', this)">Strategy</button>
+    <button class="filter-btn" onclick="filterPins('Design', this)">Design</button>
+  </div>
+
+  <div class="pin-grid" id="pin-grid">
+    <!-- filled by JS -->
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- CHIP AI -->
+<section id="chip-ai">
+  <p class="section-tag">03 / Chip Design AI</p>
+  <h2 class="section-heading">Design semiconductors with<br>the intelligence of <em>tomorrow</em></h2>
+
+  <div class="chip-layout">
+    <div>
+      <p style="color:var(--muted);line-height:1.75;margin-bottom:1rem;">Describe your chip requirements in plain language. Our Claude-powered AI generates architecture suggestions, logic gate layouts, power optimization strategies, and silicon verification pathways.</p>
+      <ul class="chip-features">
+        <li>RTL design suggestions from natural language prompts</li>
+        <li>Power, performance &amp; area (PPA) trade-off analysis</li>
+        <li>Thermal modeling and heat dissipation recommendations</li>
+        <li>Process node selection guidance (5nm, 7nm, 14nm+)</li>
+        <li>IP block reuse and integration strategies</li>
+        <li>RISC-V, ARM, and custom ISA architecture support</li>
+      </ul>
+    </div>
+
+    <div class="chip-card">
+      <label>Application Domain</label>
+      <select id="chip-domain">
+        <option value="">Select domain…</option>
+        <option>Mobile / Edge AI</option>
+        <option>Data Center Compute</option>
+        <option>Automotive / Safety-Critical</option>
+        <option>IoT / Ultra Low Power</option>
+        <option>Neural Processing Unit (NPU)</option>
+        <option>Custom ASIC</option>
+        <option>FPGA Prototype</option>
+      </select>
+
+      <label>Process Node Target</label>
+      <select id="chip-node">
+        <option value="">Select node…</option>
+        <option>3nm (Leading Edge)</option>
+        <option>5nm</option>
+        <option>7nm</option>
+        <option>14nm</option>
+        <option>28nm</option>
+        <option>130nm (Legacy / Mature)</option>
+      </select>
+
+      <label>Design Brief</label>
+      <textarea id="chip-brief" rows="4" placeholder="Describe your chip requirements in plain language…" style="color:rgba(255,255,255,.9);"></textarea>
+
+      <button class="chip-btn" id="chip-btn" onclick="runChipDesign()">Generate Design Guidance ◆</button>
+
+      <div class="chip-output" id="chip-output" style="color:rgba(255,255,255,.4);font-style:italic;">Waiting for design brief…</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#translate">Book Translator</a>
+    <a href="#portfolio">PIN Portfolio</a>
+    <a href="#chip-ai">Chip AI</a>
+  </div>
+  © 2025 Innovation Hub · Powered by Claude AI
+</footer>
+
+<!-- PIN MODAL -->
+<div class="modal-overlay" id="pin-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 id="modal-title">PIN Title</h3>
+    <p id="modal-body">Details go here.</p>
+  </div>
+</div>
+
+<script>
+// ── MULTILINGUAL WELCOME PHRASES ──
+const welcomePhrases = [
+  { lang: "English", flag: "🇬🇧", text: "Welcome — free content in your language" },
+  { lang: "Español", flag: "🇪🇸", text: "Bienvenido — contenido gratuito en tu idioma" },
+  { lang: "Français", flag: "🇫🇷", text: "Bienvenue — contenu gratuit dans votre langue" },
+  { lang: "Deutsch", flag: "🇩🇪", text: "Willkommen — kostenlose Inhalte in Ihrer Sprache" },
+  { lang: "中文", flag: "🇨🇳", text: "欢迎 — 您语言的免费内容" },
+  { lang: "日本語", flag: "🇯🇵", text: "ようこそ — あなたの言語で無料コンテンツ" },
+  { lang: "한국어", flag: "🇰🇷", text: "환영합니다 — 당신의 언어로 된 무료 콘텐츠" },
+  { lang: "Português", flag: "🇧🇷", text: "Bem-vindo — conteúdo gratuito no seu idioma" },
+  { lang: "Русский", flag: "🇷🇺", text: "Добро пожаловать — бесплатный контент на вашем языке" },
+  { lang: "العربية", flag: "🇸🇦", text: "مرحباً — محتوى مجاني بلغتك" },
+  { lang: "हिन्दी", flag: "🇮🇳", text: "स्वागत है — आपकी भाषा में मुफ्त सामग्री" },
+  { lang: "Italiano", flag: "🇮🇹", text: "Benvenuto — contenuto gratuito nella tua lingua" },
+  { lang: "Türkçe", flag: "🇹🇷", text: "Hoş geldiniz — dilinizde ücretsiz içerik" },
+  { lang: "Polski", flag: "🇵🇱", text: "Witamy — bezpłatne treści w Twoim języku" },
+  { lang: "Nederlands", flag: "🇳🇱", text: "Welkom — gratis inhoud in uw taal" },
+  { lang: "Svenska", flag: "🇸🇪", text: "Välkommen — gratis innehåll på ditt språk" },
+  { lang: "Norsk", flag: "🇳🇴", text: "Velkommen — gratis innhold på ditt språk" },
+  { lang: "Dansk", flag: "🇩🇰", text: "Velkommen — gratis indhold på dit sprog" },
+  { lang: "Suomi", flag: "🇫🇮", text: "Tervetuloa — ilmaista sisältöä kielelläsi" },
+  { lang: "Ελληνικά", flag: "🇬🇷", text: "Καλώς ήρθατε — δωρεάν περιεχόμενο στη γλώσσα σας" },
+  { lang: "Magyar", flag: "🇭🇺", text: "Üdvözöljük — ingyenes tartalom az Ön nyelvén" },
+  { lang: "Čeština", flag: "🇨🇿", text: "Vítejte — bezplatný obsah ve vašem jazyce" },
+  { lang: "Română", flag: "🇷🇴", text: "Bun venit — conținut gratuit în limba ta" },
+  { lang: "Українська", flag: "🇺🇦", text: "Ласкаво просимо — безкоштовний контент вашою мовою" },
+  { lang: "Bahasa Indonesia", flag: "🇮🇩", text: "Selamat datang — konten gratis dalam bahasa Anda" },
+  { lang: "Bahasa Melayu", flag: "🇲🇾", text: "Selamat datang — kandungan percuma dalam bahasa anda" },
+  { lang: "ภาษาไทย", flag: "🇹🇭", text: "ยินดีต้อนรับ — เนื้อหาฟรีในภาษาของคุณ" },
+  { lang: "Tiếng Việt", flag: "🇻🇳", text: "Chào mừng — nội dung miễn phí bằng ngôn ngữ của bạn" },
+  { lang: "Filipino", flag: "🇵🇭", text: "Maligayang pagdating — libreng nilalaman sa iyong wika" },
+  { lang: "Kiswahili", flag: "🇰🇪", text: "Karibu — maudhui ya bure katika lugha yako" },
+  { lang: "עברית", flag: "🇮🇱", text: "ברוך הבא — תוכן חינמי בשפה שלך" },
+  { lang: "فارسی", flag: "🇮🇷", text: "خوش آمدید — محتوای رایگان به زبان شما" },
+  { lang: "বাংলা", flag: "🇧🇩", text: "স্বাগতম — আপনার ভাষায় বিনামূল্যে সামগ্রী" },
+  { lang: "தமிழ்", flag: "🇱🇰", text: "வரவேற்கிறோம் — உங்கள் மொழியில் இலவச உள்ளடக்கம்" },
+  { lang: "తెలుగు", flag: "🇮🇳", text: "స్వాగతం — మీ భాషలో ఉచిత కంటెంట్" },
+  { lang: "Slovenčina", flag: "🇸🇰", text: "Vitajte — bezplatný obsah vo vašom jazyku" },
+  { lang: "Srpski", flag: "🇷🇸", text: "Dobrodošli — besplatan sadržaj na vašem jeziku" },
+  { lang: "Hrvatski", flag: "🇭🇷", text: "Dobrodošli — besplatni sadržaj na vašem jeziku" },
+  { lang: "Català", flag: "🏴󠁥󠁳󠁣󠁴󠁿", text: "Benvingut — contingut gratuït en el vostre idioma" },
+  { lang: "Galego", flag: "🇪🇸", text: "Benvido — contido gratuíto no teu idioma" },
+  { lang: "Euskara", flag: "🇪🇸", text: "Ongi etorri — doako edukia zure hizkuntzan" },
+  { lang: "Afrikaans", flag: "🇿🇦", text: "Welkom — gratis inhoud in jou taal" },
+  { lang: "Shqip", flag: "🇦🇱", text: "Mirë se vini — përmbajtje falas në gjuhën tuaj" },
+  { lang: "Latviešu", flag: "🇱🇻", text: "Laipni lūdzam — bezmaksas saturs jūsu valodā" },
+  { lang: "Lietuvių", flag: "🇱🇹", text: "Sveiki atvykę — nemokamas turinys jūsų kalba" },
+  { lang: "Eesti", flag: "🇪🇪", text: "Tere tulemast — tasuta sisu teie keeles" },
+  { lang: "Slovenščina", flag: "🇸🇮", text: "Dobrodošli — brezplačna vsebina v vašem jeziku" },
+  { lang: "Монгол", flag: "🇲🇳", text: "Тавтай морил — таны хэлэн дээр үнэгүй контент" },
+  { lang: "ქართული", flag: "🇬🇪", text: "კეთილი იყოს თქვენი მობრძანება — უფასო კონტენტი თქვენს ენაზე" },
+  { lang: "Հայերեն", flag: "🇦🇲", text: "Բարի գալուստ — անվճար բովանդակություն ձեր լեզվով" },
+];
+
+// Build ticker (doubled for infinite loop)
+const ticker = document.getElementById('ticker');
+const allPhrases = [...welcomePhrases, ...welcomePhrases];
+ticker.innerHTML = allPhrases.map(p =>
+  `<span class="ticker-item">${p.flag} ${p.text}</span>`
+).join('');
+
+// ── LANGUAGE SELECTOR ──
+const languages = [
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  { code: "zh", name: "中文", flag: "🇨🇳" },
+  { code: "ja", name: "日本語", flag: "🇯🇵" },
+  { code: "ko", name: "한국어", flag: "🇰🇷" },
+  { code: "pt", name: "Português", flag: "🇧🇷" },
+  { code: "ru", name: "Русский", flag: "🇷🇺" },
+  { code: "ar", name: "العربية", flag: "🇸🇦" },
+  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
+  { code: "it", name: "Italiano", flag: "🇮🇹" },
+  { code: "tr", name: "Türkçe", flag: "🇹🇷" },
+  { code: "pl", name: "Polski", flag: "🇵🇱" },
+  { code: "nl", name: "Nederlands", flag: "🇳🇱" },
+  { code: "sv", name: "Svenska", flag: "🇸🇪" },
+  { code: "no", name: "Norsk", flag: "🇳🇴" },
+  { code: "da", name: "Dansk", flag: "🇩🇰" },
+  { code: "fi", name: "Suomi", flag: "🇫🇮" },
+  { code: "el", name: "Ελληνικά", flag: "🇬🇷" },
+  { code: "hu", name: "Magyar", flag: "🇭🇺" },
+  { code: "cs", name: "Čeština", flag: "🇨🇿" },
+  { code: "ro", name: "Română", flag: "🇷🇴" },
+  { code: "uk", name: "Українська", flag: "🇺🇦" },
+  { code: "id", name: "Bahasa Indonesia", flag: "🇮🇩" },
+  { code: "ms", name: "Bahasa Melayu", flag: "🇲🇾" },
+  { code: "th", name: "ภาษาไทย", flag: "🇹🇭" },
+  { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
+  { code: "fil", name: "Filipino", flag: "🇵🇭" },
+  { code: "sw", name: "Kiswahili", flag: "🇰🇪" },
+  { code: "he", name: "עברית", flag: "🇮🇱" },
+  { code: "fa", name: "فارسی", flag: "🇮🇷" },
+  { code: "bn", name: "বাংলা", flag: "🇧🇩" },
+  { code: "ta", name: "தமிழ்", flag: "🇱🇰" },
+  { code: "te", name: "తెలుగు", flag: "🇮🇳" },
+  { code: "sk", name: "Slovenčina", flag: "🇸🇰" },
+  { code: "sr", name: "Srpski", flag: "🇷🇸" },
+  { code: "hr", name: "Hrvatski", flag: "🇭🇷" },
+  { code: "ca", name: "Català", flag: "🏴" },
+  { code: "af", name: "Afrikaans", flag: "🇿🇦" },
+  { code: "sq", name: "Shqip", flag: "🇦🇱" },
+  { code: "lv", name: "Latviešu", flag: "🇱🇻" },
+  { code: "lt", name: "Lietuvių", flag: "🇱🇹" },
+  { code: "et", name: "Eesti", flag: "🇪🇪" },
+  { code: "sl", name: "Slovenščina", flag: "🇸🇮" },
+  { code: "mn", name: "Монгол", flag: "🇲🇳" },
+  { code: "ka", name: "ქართული", flag: "🇬🇪" },
+  { code: "hy", name: "Հայերեն", flag: "🇦🇲" },
+  { code: "ur", name: "اردو", flag: "🇵🇰" },
+  { code: "az", name: "Azərbaycan", flag: "🇦🇿" },
+  { code: "kk", name: "Қазақша", flag: "🇰🇿" },
+  { code: "uz", name: "O'zbek", flag: "🇺🇿" },
+  { code: "mk", name: "Македонски", flag: "🇲🇰" },
+  { code: "bs", name: "Bosanski", flag: "🇧🇦" },
+];
+
+let selectedLangs = new Set();
+
+function renderLangGrid(filter = '') {
+  const grid = document.getElementById('lang-grid');
+  const filtered = languages.filter(l =>
+    l.name.toLowerCase().includes(filter.toLowerCase()) ||
+    l.code.toLowerCase().includes(filter.toLowerCase())
+  );
+  grid.innerHTML = filtered.map(l => `
+    <label class="lang-chip ${selectedLangs.has(l.code) ? 'selected' : ''}" data-code="${l.code}">
+      <input type="checkbox" ${selectedLangs.has(l.code) ? 'checked' : ''} onchange="toggleLang('${l.code}', this)" />
+      <span class="flag">${l.flag}</span>
+      <span>${l.name}</span>
+    </label>
+  `).join('');
+  updateSelectedCount();
+}
+
+function toggleLang(code, cb) {
+  if (cb.checked) selectedLangs.add(code);
+  else selectedLangs.delete(code);
+  // update chip style
+  const chip = cb.closest('.lang-chip');
+  if (chip) chip.classList.toggle('selected', cb.checked);
+  updateSelectedCount();
+}
+
+function updateSelectedCount() {
+  const el = document.getElementById('selected-count');
+  const n = selectedLangs.size;
+  el.textContent = n === 0 ? 'No languages selected' : `${n} language${n > 1 ? 's' : ''} selected`;
+}
+
+document.getElementById('lang-search').addEventListener('input', e => renderLangGrid(e.target.value));
+renderLangGrid();
+
+// ── TRANSLATION via Claude API ──
+async function runTranslation() {
+  const text = document.getElementById('source-text').value.trim();
+  const title = document.getElementById('book-title').value.trim();
+  if (!text) { alert('Please enter some source text to translate.'); return; }
+  if (selectedLangs.size === 0) { alert('Please select at least one target language.'); return; }
+
+  const btn = document.getElementById('translate-btn');
+  const out = document.getElementById('trans-output');
+  btn.disabled = true;
+  btn.textContent = 'Translating…';
+  out.className = 'translation-output visible';
+  out.innerHTML = '<span class="thinking">Translating your text — please wait…</span>';
+
+  const selectedLangNames = languages
+    .filter(l => selectedLangs.has(l.code))
+    .map(l => `${l.flag} ${l.name} (${l.code})`)
+    .join(', ');
+
+  const prompt = `You are an expert literary translator. Translate the following passage into these languages: ${selectedLangNames}.
+${title ? `The book title is: "${title}".` : ''}
+For each language, respond ONLY with valid JSON in this exact format:
+[
+  { "code": "es", "name": "Español", "flag": "🇪🇸", "translation": "…" },
+  …
+]
+No markdown, no explanation, only JSON.
+
+Source text:
+"""
+${text}
+"""`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await resp.json();
+    const raw = data.content.map(b => b.text || '').join('').trim();
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const translations = JSON.parse(clean);
+
+    out.innerHTML = translations.map(t => `
+      <div class="output-lang-block">
+        <div class="output-lang-label">${t.flag} ${t.name}</div>
+        <div class="output-lang-text">${t.translation}</div>
+      </div>
+    `).join('');
+  } catch (err) {
+    out.innerHTML = `<span class="thinking">Translation failed — please try again. (${err.message})</span>`;
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Translate Now';
+}
+
+// ── PINS ──
+const pins = [
+  { title: "Neural Commerce", tag: "Technology", icon: "🔮", desc: "AI-driven recommendation engines that adapt to customer psychology in real time." },
+  { title: "Pivot Framework", tag: "Strategy", icon: "🧭", desc: "Systematic approach to identifying and executing strategic pivots before disruption hits." },
+  { title: "Silent Close", tag: "Sales", icon: "🤝", desc: "Closing techniques that eliminate pressure and build long-term trust with clients." },
+  { title: "Biomimetic UI", tag: "Design", icon: "🌿", desc: "Interface patterns inspired by natural systems — fluid, intuitive, alive." },
+  { title: "Quantum Pricing", tag: "Strategy", icon: "⚡", desc: "Dynamic pricing models that respond to market micro-signals in milliseconds." },
+  { title: "Edge Networks", tag: "Technology", icon: "🕸️", desc: "Distributed computing topologies that push intelligence to the periphery." },
+  { title: "Story Selling", tag: "Sales", icon: "📖", desc: "Narrative-based sales methodology that makes customers the hero of your pitch." },
+  { title: "Brutalist Branding", tag: "Design", icon: "🏗️", desc: "Raw, honest brand identities that cut through visual noise with intentional disruption." },
+];
+
+let activeFilter = 'All';
+
+function filterPins(tag, btn) {
+  activeFilter = tag;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPins();
+}
+
+function renderPins() {
+  const grid = document.getElementById('pin-grid');
+  const filtered = activeFilter === 'All' ? pins : pins.filter(p => p.tag === activeFilter);
+  grid.innerHTML = filtered.map((p, i) => `
+    <div class="pin-card" onclick="openPin(${i})" style="cursor:pointer">
+      <div class="pin-icon">${p.icon}</div>
+      <div class="pin-title">${p.title}</div>
+      <span class="pin-tag">${p.tag}</span>
+      <p class="pin-desc">${p.desc}</p>
+    </div>
+  `).join('');
+}
+
+function openPin(i) {
+  const p = pins[i];
+  document.getElementById('modal-title').textContent = p.icon + ' ' + p.title;
+  document.getElementById('modal-body').textContent = p.desc;
+  document.getElementById('pin-modal').classList.add('open');
+}
+function closeModal() { document.getElementById('pin-modal').classList.remove('open'); }
+renderPins();
+
+// ── CHIP AI ──
+async function runChipDesign() {
+  const domain = document.getElementById('chip-domain').value;
+  const node = document.getElementById('chip-node').value;
+  const brief = document.getElementById('chip-brief').value.trim();
+  if (!brief) { alert('Please enter a design brief.'); return; }
+
+  const btn = document.getElementById('chip-btn');
+  const out = document.getElementById('chip-output');
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+  out.style.color = 'rgba(255,255,255,.5)';
+  out.style.fontStyle = 'italic';
+  out.textContent = 'Analyzing requirements…';
+
+  const prompt = `You are an expert semiconductor architect. Given the following chip design brief, provide structured, practical guidance covering architecture, power considerations, and key risks.
+
+Domain: ${domain || 'Not specified'}
+Process Node: ${node || 'Not specified'}
+Brief: ${brief}
+
+Keep the response concise and technical. Use plain text, no markdown.`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await resp.json();
+    const text = data.content.map(b => b.text || '').join('');
+    out.style.color = 'rgba(255,255,255,.85)';
+    out.style.fontStyle = 'normal';
+    out.textContent = text;
+  } catch (err) {
+    out.textContent = 'Request failed — please try again.';
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Generate Design Guidance ◆';
+}
+</script>
+</body>
+</html>
